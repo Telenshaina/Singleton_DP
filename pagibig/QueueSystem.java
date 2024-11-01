@@ -4,31 +4,28 @@ public class QueueSystem {
     private static QueueSystem instance;
     private int queueNumber;
 
-    // Private constructor to prevent instantiation outside of the class
-    private QueueSystem() {
-        queueNumber = 0;
+    private QueueSystem(int initialQueueNumber) {
+        queueNumber = initialQueueNumber;
     }
 
-    // Get QueueSystem instance
-    public static synchronized QueueSystem getInstance() {
+    public static synchronized QueueSystem getInstance(int initialQueueNumber) {
         if (instance == null) {
-            instance = new QueueSystem();
+            instance = new QueueSystem(initialQueueNumber);
         }
         return instance;
     }
 
-    // Get next queue number
     public synchronized int getNextQueueNumber() {
         queueNumber++;
         return queueNumber;
     }
 
-    // Reset queue number based on input
+    
     public synchronized void resetQueueNumber(int newQueueNumber) {
         queueNumber = newQueueNumber;
     }
 
-    // Get current queue number
+    
     public synchronized int getCurrentQueueNumber() {
         return queueNumber;
     }
